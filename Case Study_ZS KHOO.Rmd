@@ -1,0 +1,159 @@
+---
+title: "Code"
+author: "ZS KHOO"
+date: "11/28/2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Optimisation Model (Case Study)
+
+## 4 members (EXISTING)
+
+
+```{r 4members}
+library(lpSolve)
+
+#4 members (Existing)
+# Objective function
+objective <- c(1, 1, 1, 1, 1)
+
+# Constraints matrix
+constraints <- matrix(c(
+  1, 0, 0, 0, 0,  # x1 ≤ 377
+  0, 1, 0, 0, 0,  # x2 ≤ 377
+  0, 0, 1, 0, 0,  # x3 ≤ 377
+  0, 0, 0, 1, 0,  # x4 ≤ 377
+  0, 0, 0, 0, 1,  # x5 ≤ 377
+  1, 1, 1, 0, 0,  # x1 + x2 + x3 ≤ 1020 ((340/4)*4*3)
+  0, 1, 1, 1, 0,  # x2 + x3 + x4 ≤ 1020
+  0, 0, 1, 1, 1   # x3 + x4 + x5 ≤ 1020
+), nrow = 8, byrow = TRUE)
+
+# Constraint directions
+directions <- c("<=", "<=", "<=", "<=", "<=", "<=", "<=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(377, 377, 377, 377, 377, 1020, 1020, 1020)
+
+# Solve the linear programming problem
+solution <- lp("max", objective, constraints, directions, rhs, compute.sens = TRUE)
+
+# Output the solution
+cat("Maximum total orders:", solution$objval, "\n")
+cat("Daily orders:", solution$solution, "\n")
+```
+
+## 5 members
+
+
+```{r 5members}
+#5 members
+rm(list=ls())
+library(lpSolve)
+
+# Objective function
+objective <- c(1, 1, 1, 1, 1)
+
+# Constraints matrix
+constraints <- matrix(c(
+  1, 0, 0, 0, 0,  # x1 ≤ 471 (377/4*5)
+  0, 1, 0, 0, 0,  # x2 ≤ 471
+  0, 0, 1, 0, 0,  # x3 ≤ 471
+  0, 0, 0, 1, 0,  # x4 ≤ 471
+  0, 0, 0, 0, 1,  # x5 ≤ 471
+  1, 1, 1, 0, 0,  # x1 + x2 + x3 ≤ 1275 (340/4*5*3)
+  0, 1, 1, 1, 0,  # x2 + x3 + x4 ≤ 1275
+  0, 0, 1, 1, 1   # x3 + x4 + x5 ≤ 1275
+), nrow = 8, byrow = TRUE)
+
+# Constraint directions
+directions <- c("<=", "<=", "<=", "<=", "<=", "<=", "<=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(471, 471, 471, 471, 471, 1275, 1275, 1275)
+
+# Solve the linear programming problem
+solution <- lp("max", objective, constraints, directions, rhs, compute.sens = TRUE)
+
+# Output the solution
+cat("Maximum total orders:", solution$objval, "\n")
+cat("Daily orders:", solution$solution, "\n")
+```
+
+
+## 6 members
+
+
+```{r 6members}
+rm(list=ls())
+library(lpSolve)
+
+# Objective function
+objective <- c(1, 1, 1, 1, 1)
+
+# Constraints matrix
+constraints <- matrix(c(
+  1, 0, 0, 0, 0,  # x1 ≤ 565 (377/4*6)
+  0, 1, 0, 0, 0,  # x2 ≤ 565
+  0, 0, 1, 0, 0,  # x3 ≤ 565
+  0, 0, 0, 1, 0,  # x4 ≤ 565
+  0, 0, 0, 0, 1,  # x5 ≤ 565
+  1, 1, 1, 0, 0,  # x1 + x2 + x3 ≤ 1530 (340/4*6*3)
+  0, 1, 1, 1, 0,  # x2 + x3 + x4 ≤ 1530
+  0, 0, 1, 1, 1   # x3 + x4 + x5 ≤ 1530
+), nrow = 8, byrow = TRUE)
+
+# Constraint directions
+directions <- c("<=", "<=", "<=", "<=", "<=", "<=", "<=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(565, 565, 565, 565, 565, 1530, 1530, 1530)
+
+# Solve the linear programming problem
+solution <- lp("max", objective, constraints, directions, rhs, compute.sens = TRUE)
+
+# Output the solution
+cat("Maximum total orders:", solution$objval, "\n")
+cat("Daily orders:", solution$solution, "\n")
+```
+
+
+## 7 members
+
+
+```{r 7members}
+rm(list=ls())
+library(lpSolve)
+
+# Objective function
+objective <- c(1, 1, 1, 1, 1)
+
+# Constraints matrix
+constraints <- matrix(c(
+  1, 0, 0, 0, 0,  # x1 ≤ 659 (377/4*7)
+  0, 1, 0, 0, 0,  # x2 ≤ 659
+  0, 0, 1, 0, 0,  # x3 ≤ 659
+  0, 0, 0, 1, 0,  # x4 ≤ 659
+  0, 0, 0, 0, 1,  # x5 ≤ 659
+  1, 1, 1, 0, 0,  # x1 + x2 + x3 ≤ 1785 (340/4*7*3)
+  0, 1, 1, 1, 0,  # x2 + x3 + x4 ≤ 1785
+  0, 0, 1, 1, 1   # x3 + x4 + x5 ≤ 1785
+), nrow = 8, byrow = TRUE)
+
+# Constraint directions
+directions <- c("<=", "<=", "<=", "<=", "<=", "<=", "<=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(659, 659, 659, 659, 659, 1785, 1785, 1785)
+
+# Solve the linear programming problem
+solution <- lp("max", objective, constraints, directions, rhs, compute.sens = TRUE)
+
+# Output the solution
+cat("Maximum total orders:", solution$objval, "\n")
+cat("Daily orders:", solution$solution, "\n")
+```
